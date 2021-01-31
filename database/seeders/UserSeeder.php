@@ -15,26 +15,47 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('visiteurs')->insert(
-            [
-                'id' => 'a1',
-                'nom' => 'Didier',
-                'prenom' => 'Simon',
-                'login' => 'simondidier.pro@gmail.com',
-                'mdp' => 'didier333',
-                'adresse' => '11 rue romain rolland',
-                'cp' => '69500',
-                'ville' => 'Bron',
-                'dateEmbauche' => '2021-01-29',
-            ]
-        );
+        [
+            'id' => 'a1',
+            'nom' => 'Didier',
+            'prenom' => 'Simon',
+            'login' => 'unLogin',
+            'mdp' => 'unMdp',
+            'adresse' => 'uneAdresse',
+            'cp' => 'unCP',
+            'ville' => 'uneVille',
+            'dateEmbauche' => '2021-05-12',
+        ]);
+
         DB::table('users')->insert(
             [
-                'name'=>'simon',
+                'name'=>'Simon',
                 'email'=>'simondidier.pro@gmail.com',
                 'password'=>bcrypt('didier333'),
-                'visiteur_id' => 'a1',
+                'visiteur_id'=>'a1'
             ]
         );
+
+        DB::table('visiteurs')->insert(
+            [
+                'id' => 'a2',
+                'nom' => 'unNom',
+                'prenom' => 'unPrenom',
+                'login' => 'unLogin',
+                'mdp' => 'unMdp',
+                'adresse' => 'uneAdresse',
+                'cp' => 'unCP',
+                'ville' => 'uneVille',
+                'dateEmbauche' => '2021-05-12',
+            ]);
+
+        DB::table('users')->insert(
+        [
+            'name'=>'Quentin',
+            'email'=>'unEmail@gmail.com',
+            'password'=>bcrypt('test'),
+            'visiteur_id'=> 'a2',
+        ]);
 
     }
 }

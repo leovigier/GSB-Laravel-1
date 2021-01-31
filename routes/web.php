@@ -22,8 +22,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/ExpenseGenerate', [ExpenseController::class, 'generateExpenseSheet'])->name('VueAjoutFicheFrais');
-Route::get('/VerfiExpenseGenerate', [ExpenseController::class, 'sendNuiteeDataToDataBase'])->name('ConfirmAjout');
-Route::post('/VerfiExpenseGenerate', [ExpenseController::class, 'sendNuiteeDataToDataBase'])->name('ConfirmAjout');
+Route::get('/Expense/Generate', [ExpenseController::class, 'generateExpenseSheet'])->name('VueAjoutFicheFrais');
+Route::post('/Expense/Generate/Verify', [ExpenseController::class, 'sendDataToDataBase'])->name('ConfirmAjout');
+Route::post('/Expense/Generate/VerifyBis', [ExpenseController::class, 'sendDataToDataBaseBis'])->name('ConfirmAjoutBis');
+Route::get('/Expense/ListForfaits', [ExpenseController::class, 'getAllExpenseOfCurrentUser'])->name('expenseList');
+Route::get('/Expense/ListHorsForfaits', [ExpenseController::class, 'getAllExpenseOfCurrentUserBis'])->name('expenseListHF');
+Route::get('/Expense/modifyExpense', [ExpenseController::class, 'modifyExpenseOfCurrentUser'])->name("modifyExpense");
+Route::get('/Expense/modifyExpenseBis', [ExpenseController::class, 'modifyExpenseOfCurrentUserHF'])->name("modifyExpenseBis");
+Route::get('/Expense/modifyExpense/apply', [ExpenseController::class, 'applyModifyExpenseOfCurrentUser'])->name("applyModifyExpense");
+Route::get('/Expense/modifyExpenseBis/apply', [ExpenseController::class, 'applyModifyExpenseOfCurrentUserBis'])->name("applyModifyExpenseHF");
 
 require __DIR__.'/auth.php';

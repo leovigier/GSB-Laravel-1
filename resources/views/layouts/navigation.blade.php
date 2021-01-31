@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600"></x-application-logo>
                     </a>
                 </div>
 
@@ -16,7 +16,13 @@
                         {{ __('Accueil') }}
                     </x-nav-link>
                     <x-nav-link :href="route('VueAjoutFicheFrais')" :active="request()->routeIs('VueAjoutFicheFrais')">
-                        {{__('Frais')}}
+                        {{__('Ajouter Frais')}}
+                    </x-nav-link>
+                    <x-nav-link :href="route('expenseList')" :active="request()->routeIs('expenseList')">
+                        {{__('Mes Frais')}}
+                    </x-nav-link>
+                    <x-nav-link :href="route('expenseListHF')" :active="request()->routeIs('expenseListHF')">
+                        {{__('Mes Frais Hors Forfaits')}}
                     </x-nav-link>
 
                 </div>

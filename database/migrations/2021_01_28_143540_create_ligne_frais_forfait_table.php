@@ -15,7 +15,7 @@ class CreateLigneFraisForfaitTable extends Migration
     {
         Schema::create('ligne_frais_forfaits', function (Blueprint $table) {
             $table->char('visiteur_id');
-            $table->string('mois');
+            $table->string('mois')->unique();
             $table->char('FraisForfait_id');
             $table->integer('quantité')->default(null);
             $table->foreign('visiteur_id')->references('id')->on('visiteurs');
