@@ -17,43 +17,23 @@ class UserSeeder extends Seeder
         DB::table('visiteurs')->insert(
         [
             'id' => 'a1',
-            'nom' => 'Didier',
-            'prenom' => 'Simon',
-            'login' => 'unLogin',
-            'mdp' => 'unMdp',
-            'adresse' => 'uneAdresse',
-            'cp' => 'unCP',
-            'ville' => 'uneVille',
-            'dateEmbauche' => '2021-05-12',
+            'nom' => 'Admin',
+            'prenom' => 'Admin',
+            'adresse' => 'Admin',
+            'cp' => 'Admin',
+            'ville' => 'Admin',
+            'dateEmbauche' => '2021-01-31',
         ]);
 
         DB::table('users')->insert(
             [
-                'name'=>'Simon',
-                'email'=>'simondidier.pro@gmail.com',
-                'password'=>bcrypt('didier333'),
+                'name'=>'Admin',
+                'email'=>'admin@gsb.com',
+                'password'=>bcrypt('admin'),
                 'visiteur_id'=>'a1'
             ]
         );
 
-        DB::table('visiteurs')->insert(
-            [
-                'id' => 'a2',
-                'nom' => 'Admin',
-                'prenom' => 'Admin',
-                'adresse' => 'Admin',
-                'cp' => 'Admin',
-                'ville' => 'Admin',
-                'dateEmbauche' => '2021-01-31',
-            ]);
-
-        DB::table('users')->insert(
-        [
-            'name'=>'Quentin',
-            'email'=>'unEmail@gmail.com',
-            'password'=>bcrypt('test'),
-            'visiteur_id'=> 'a2',
-        ]);
 
     }
 }
