@@ -39,14 +39,12 @@ class UserSeeder extends Seeder
         DB::table('visiteurs')->insert(
             [
                 'id' => 'a2',
-                'nom' => 'unNom',
-                'prenom' => 'unPrenom',
-                'login' => 'unLogin',
-                'mdp' => 'unMdp',
-                'adresse' => 'uneAdresse',
-                'cp' => 'unCP',
-                'ville' => 'uneVille',
-                'dateEmbauche' => '2021-05-12',
+                'nom' => 'Admin',
+                'prenom' => 'Admin',
+                'adresse' => 'Admin',
+                'cp' => 'Admin',
+                'ville' => 'Admin',
+                'dateEmbauche' => '2021-01-31',
             ]);
 
         DB::table('users')->insert(

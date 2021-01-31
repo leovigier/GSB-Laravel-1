@@ -17,8 +17,6 @@ class CreateVisiteurTable extends Migration
             $table->char('id')->primary();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('login');
-            $table->string('mdp');
             $table->string('adresse');
             $table->string('cp');
             $table->string('ville');
