@@ -59,9 +59,13 @@ class ExpenseController extends Controller
 
     public function applyModifyExpenseOfCurrentUser(Request $request){
         $mois = $request->input('moisModif');
+        $type = $request->input('typeModif');
         $newqte = $request->input('qteModif');
         $affect = DB::table('ligne_frais_forfaits')
-            ->where('mois', $mois)
+            ->where([
+                ['mois', $mois],
+                ['FraisForfait_id', $type]
+            ])
             ->update(
                 [
                     'quantité' => $newqte
@@ -71,6 +75,7 @@ class ExpenseController extends Controller
 
     public function applyModifyExpenseOfCurrentUserBis(Request $request){
         $mois = $request->input('moisModif');
+        $type = $request->input('typeModif');
         $nvxMontant = $request->input('montantmodif');
         $affect = DB::table('ligne_frais_hors_forfaits')
             ->where('mois', $mois)
@@ -83,9 +88,13 @@ class ExpenseController extends Controller
 
     public function modifyExpenseOfCurrentUser(Request $request){
         $mois = $request->input('moisExpense');
+        $type = $request->input('typeExpense');
         $modifyExpenses = DB::table('ligne_frais_forfaits')
             ->select('mois', 'FraisForfait_id', 'quantité')
-            ->where('mois', $mois)
+            ->where([
+                ['mois',$mois],
+                ['FraisForfait_id', $type],
+            ])
             ->get();
         return view('vueModifFicheFrais',compact('modifyExpenses'));
     }
