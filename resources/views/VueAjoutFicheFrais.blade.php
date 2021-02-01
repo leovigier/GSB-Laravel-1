@@ -16,7 +16,7 @@
                             <input type="text" name="visiteur" value="{{ Auth::user()->visiteur_id }}" readonly>
                             <input type="month" name="mois" required>
                             <input type="text" name="tag" value="NUI" readonly>
-                            <input type="text" name="nuitee" placeholder="nombre de nuitée" required>
+                            <input type="text" name="amount" placeholder="nombre de nuitée" required>
                             <input type="submit" class="myBtn" name="sub" value="Valider la note de frais">
                         </form>
                     </div>
@@ -34,7 +34,7 @@
                             <input type="text" name="visiteur" value="{{ Auth::user()->visiteur_id }}" readonly>
                             <input type="month" name="mois" required>
                             <input type="text" name="tag" value="REP" readonly>
-                            <input type="text" name="repas" placeholder="nombre de repas" required>
+                            <input type="text" name="amount" placeholder="nombre de repas" required>
                             <input type="submit" class="myBtn" name="sub" value="Valider la note de frais">
                         </form>
                     </div>
@@ -52,7 +52,7 @@
                             <input type="text" name="visiteur" value="{{ Auth::user()->visiteur_id }}" readonly>
                             <input type="month" name="mois" required>
                             <input type="text" name="tag" value="KM" readonly>
-                            <input type="text" name="Km" placeholder="nombre de Km" required>
+                            <input type="text" name="amount" placeholder="nombre de Km" required>
                             <input type="submit" class="myBtn" name="sub" value="Valider la note de frais">
                         </form>
                     </div>

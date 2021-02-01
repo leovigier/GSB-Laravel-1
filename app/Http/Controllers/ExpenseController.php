@@ -22,7 +22,7 @@ class ExpenseController extends Controller
                 'visiteur_id' => $request->visiteur,
                 'mois' => $request->mois,
                 'FraisForfait_id' => $request->tag,
-                'quantité' => $request->nuitee,
+                'quantité' => $request->amount,
             ]);
         return view('vueVerifAjoutFicheFrais');
     }
