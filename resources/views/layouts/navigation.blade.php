@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('expenseListHF')" :active="request()->routeIs('expenseListHF')">
                         {{__('Mes Frais Hors Forfaits')}}
                     </x-nav-link>
+                    <x-nav-link :href="route('PDFdownload')" :active="request()->routeIs('PDFdownload')">
+                        {{__('Télécharger ma fiche de frais')}}
+                    </x-nav-link>
 
                 </div>
             </div>

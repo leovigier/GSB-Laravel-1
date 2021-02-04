@@ -18,7 +18,7 @@ class CreateLigneFraisForfaitTable extends Migration
             $table->char('visiteur_id');
             $table->string('mois');
             $table->char('FraisForfait_id');
-            $table->integer('quantité')->default(null);
+            $table->integer('quantite')->default(null);
             $table->foreign('visiteur_id')->references('id')->on('visiteurs');
             $table->foreign('FraisForfait_id')->references('id')->on('frais_forfaits');
         });

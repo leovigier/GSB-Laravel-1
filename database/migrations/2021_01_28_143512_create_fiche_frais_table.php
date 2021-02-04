@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateFicheFraisTable extends Migration
@@ -22,8 +23,9 @@ class CreateFicheFraisTable extends Migration
             $table->char('id_Etat');
             $table->foreign('visiteur_id')->references('id')->on('visiteurs');
             $table->foreign('id_Etat')->references('id')->on('etats');
-
         });
+
+        DB::unprepared("ALTER TABLE `fiche_frais` ADD PRIMARY KEY (`visiteur_id`,`mois`)");
     }
 
     /**

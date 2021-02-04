@@ -34,6 +34,59 @@ class UserSeeder extends Seeder
             ]
         );
 
+        DB::table('etats')->insert(
+            [
+                'id' => 'CL',
+                'libelle' => 'Saisie Cloturee',
+            ]
+        );
+        DB::table('etats')->insert(
+            [
+                'id' => 'CR',
+                'libelle' => 'Fiche creer, saisie en cours',
+            ],
+        );
+        DB::table('etats')->insert(
+            [
+                'id' => 'RB',
+                'libelle' => 'Renboursee',
+            ]
+        );
+        DB::table('etats')->insert(
+            [
+                'id' => 'VA',
+                'libelle' => 'Validee et mise en paiment',
+            ]
+        );
+
+        DB::table('frais_forfaits')->insert(
+            [
+                'id' => 'ETP',
+                'libelle' => 'Forfait Etape',
+                'montant' => '110.00',
+            ]
+        );
+        DB::table('frais_forfaits')->insert(
+            [
+                'id' => 'KM',
+                'libelle' => 'Frais Kilometrique',
+                'montant' => '0.62',
+            ]
+        );
+        DB::table('frais_forfaits')->insert(
+            [
+                'id' => 'NUI',
+                'libelle' => 'Nuitee Hotel',
+                'montant' => '80.00',
+            ]
+        );
+        DB::table('frais_forfaits')->insert(
+            [
+                'id' => 'REP',
+                'libelle' => 'Repas Restaurant',
+                'montant' => '25.00',
+            ]
+        );
 
     }
 }

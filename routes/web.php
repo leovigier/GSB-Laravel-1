@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExpenseController;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,5 +32,6 @@ Route::get('/Expense/modifyExpense', [ExpenseController::class, 'modifyExpenseOf
 Route::get('/Expense/modifyExpenseBis', [ExpenseController::class, 'modifyExpenseOfCurrentUserHF'])->name("modifyExpenseBis");
 Route::get('/Expense/modifyExpense/apply', [ExpenseController::class, 'applyModifyExpenseOfCurrentUser'])->name("applyModifyExpense");
 Route::get('/Expense/modifyExpenseBis/apply', [ExpenseController::class, 'applyModifyExpenseOfCurrentUserBis'])->name("applyModifyExpenseHF");
-
+Route::get('/Expense/GenerateExpenseSheet', [ExpenseController::class, 'getValueToLoadOnPDF'])->name("PDFdownload");
+Route::post("/Expense/GenerateExpenseSheet/Download", [ExpenseController::class, 'downloadPDF'])->name('download');
 require __DIR__.'/auth.php';

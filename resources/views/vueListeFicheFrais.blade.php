@@ -14,7 +14,7 @@
                         <form method="get" action="modifyExpense">
                             <input type="text" name="moisExpense" value="{{$Expense->mois}}" readonly>
                             <input type="text" name="typeExpense" value="{{$Expense->FraisForfait_id}}" readonly>
-                            <input type="text" name="qteExpense" value="{{$Expense->quantité}}" readonly>
+                            <input type="text" name="qteExpense" value="{{$Expense->quantite}}" readonly>
                             <input type="submit" value="Modifier ma fiche de frais">
                         </form>
                     </div>

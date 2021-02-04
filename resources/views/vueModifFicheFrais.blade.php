@@ -13,7 +13,7 @@
                     <form method="get" action="{{route('applyModifyExpense')}}">
                         <input type="text" name="moisModif" value="{{$modif->mois}}" readonly>
                         <input type="text" name="typeModif" value="{{$modif->FraisForfait_id}}" readonly>
-                        <input type="text" name="qteModif" value="{{$modif->quantité}}">
+                        <input type="text" name="qteModif" value="{{$modif->quantite}}">
                         <input type="submit" value="Valider mes modifications">
                     </form>
                 </div>
