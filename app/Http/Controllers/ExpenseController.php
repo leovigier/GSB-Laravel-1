@@ -24,6 +24,7 @@ class ExpenseController extends Controller
 
     public function sendDataToDataBase(Request $request){
         //insertion de la ligne de frais "specifique" dans la bdd
+        //forfait
         DB::table('ligne_frais_forfaits')
             ->insert([
                 'visiteur_id' => $request->visiteur,
@@ -34,6 +35,7 @@ class ExpenseController extends Controller
         return view('vueVerifAjoutFicheFrais');
     }
 
+    //hors forfait
     public function sendDataToDataBaseBis(Request $request){
         DB::table('ligne_frais_hors_forfaits')
             ->insert([
@@ -47,7 +49,7 @@ class ExpenseController extends Controller
     }
 
     //recupération des listes du visiteur connecté
-
+    //forfait
     public function getAllExpenseOfCurrentUser(){
         $User = Auth::user()->visiteur_id;
         $Expenses = DB::table('ligne_frais_forfaits')
@@ -57,6 +59,7 @@ class ExpenseController extends Controller
         return view('vueListeFicheFrais',compact('Expenses'));
     }
 
+    //hors forfait
     public function getAllExpenseOfCurrentUserBis(){
         $User = Auth::user()->visiteur_id;
         $ExpensesBis = DB::table('ligne_frais_hors_forfaits')
@@ -67,7 +70,7 @@ class ExpenseController extends Controller
     }
 
     // Modification des lignes de frais
-
+    //forfait
     public function modifyExpenseOfCurrentUser(Request $request){
         $mois = $request->input('moisExpense');
         $modifyExpenses = DB::table('ligne_frais_forfaits')
@@ -79,6 +82,7 @@ class ExpenseController extends Controller
         return view('vueModifFicheFrais',compact('modifyExpenses'));
     }
 
+    //hors forfait
     public function modifyExpenseOfCurrentUserHF(Request $request){
         $mois = $request->input('moisExpense');
         $date = $request->input('dateExpense');
@@ -93,7 +97,7 @@ class ExpenseController extends Controller
     }
 
     //Application des modification d'une fiche de frais du visiteur connecté
-
+    //forfait
     public function applyModifyExpenseOfCurrentUser(Request $request){
         $mois = $request->input('moisModif');
         $type = $request->input('typeModif');
@@ -110,6 +114,7 @@ class ExpenseController extends Controller
         return view('vueVerifModifFicheFrais');
     }
 
+    //hors forfait
     public function applyModifyExpenseOfCurrentUserBis(Request $request){
         $mois = $request->input('moisModif');
         $nvxMontant = $request->input('montantmodif');
@@ -145,9 +150,13 @@ class ExpenseController extends Controller
             ])
             ->get();
 
+        $mutipl = DB::table('frais_forfaits')
+            ->select('montant')
+            ->where([
+                
+            ]);
         $pdf = PDF::loadView("ficheFrais", compact('Expenses'));
         return $pdf->download("fiche_de_frais-". $mois ."pdf");
-
     }
 
 }
