@@ -14,13 +14,14 @@ class CreateLigneFraisHorsForfaitTable extends Migration
     public function up()
     {
         Schema::create('ligne_frais_hors_forfaits', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
-            $table->char('visiteur_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('visiteur_id');
             $table->string('mois');
             $table->string('libelle')->default(null);
             $table->date('date')->default(null);
             $table->decimal('montant')->default(null);
             $table->foreign('visiteur_id')->references('id')->on('visiteurs');
+            $table->timestamps();
         });
     }
 

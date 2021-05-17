@@ -16,7 +16,6 @@ class UserSeeder extends Seeder
     {
         DB::table('visiteurs')->insert(
         [
-            'id' => 'a1',
             'nom' => 'Admin',
             'prenom' => 'Admin',
             'adresse' => 'Admin',
@@ -30,59 +29,59 @@ class UserSeeder extends Seeder
                 'name'=>'Admin',
                 'email'=>'admin@gsb.com',
                 'password'=>bcrypt('admin'),
-                'visiteur_id'=>'a1'
+                'visiteur_id'=>'1'
             ]
         );
 
         DB::table('etats')->insert(
             [
-                'id' => 'CL',
+                'id' => '1',
                 'libelle' => 'Saisie Cloturee',
             ]
         );
         DB::table('etats')->insert(
             [
-                'id' => 'CR',
+                'id' => '2',
                 'libelle' => 'Fiche creer, saisie en cours',
             ],
         );
         DB::table('etats')->insert(
             [
-                'id' => 'RB',
+                'id' => '3',
                 'libelle' => 'Renboursee',
             ]
         );
         DB::table('etats')->insert(
             [
-                'id' => 'VA',
+                'id' => '4',
                 'libelle' => 'Validee et mise en paiment',
             ]
         );
 
         DB::table('frais_forfaits')->insert(
             [
-                'id' => 'ETP',
+                'id' => '1',
                 'libelle' => 'Forfait Etape',
                 'montant' => '110.00',
             ]
         );
         DB::table('frais_forfaits')->insert(
             [
-                'id' => 'KM',
+                'id' => '2',
                 'libelle' => 'Frais Kilometrique',
                 'montant' => '0.62',
             ]
         );
         DB::table('frais_forfaits')->insert(
             [
-                'id' => 'NUI',
+                'id' => '3',
                 'libelle' => 'Nuitee Hotel',
                 'montant' => '80.00',
             ]
         );
         DB::table('frais_forfaits')->insert(
             [
-                'id' => 'REP',
+                'id' => '4',
                 'libelle' => 'Repas Restaurant',
                 'montant' => '25.00',
             ]

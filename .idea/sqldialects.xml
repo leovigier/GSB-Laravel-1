@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/app/Http/Controllers/ExpenseController.php" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/database/migrations/2021_01_28_143512_create_fiche_frais_table.php" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/database/migrations/2021_01_28_143540_create_ligne_frais_forfait_table.php" dialect="GenericSQL" />
-  </component>
-</project>

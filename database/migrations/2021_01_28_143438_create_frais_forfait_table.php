@@ -14,9 +14,10 @@ class CreateFraisForfaitTable extends Migration
     public function up()
     {
         Schema::create('frais_forfaits', function (Blueprint $table) {
-            $table->char("id")->primary();
+            $table->bigIncrements("id");
             $table->string("libelle");
             $table->decimal("montant");
+            $table->timestamps();
         });
     }
 

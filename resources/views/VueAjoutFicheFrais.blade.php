@@ -15,7 +15,7 @@
                             <h2>Renseignement Fiche des Frais de nuitée</h2>
                             <input type="text" name="visiteur" value="{{ Auth::user()->visiteur_id }}" readonly>
                             <input type="month" name="mois" required>
-                            <input type="text" name="tag" value="NUI" readonly>
+                            <input type="text" name="tag" value="3" readonly>
                             <input type="text" name="amount" placeholder="nombre de nuitée" required>
                             <input type="submit" class="myBtn" name="sub" value="Valider la note de frais">
                         </form>
@@ -33,7 +33,7 @@
                             <h2>Renseignement Fiche des Frais de repas</h2>
                             <input type="text" name="visiteur" value="{{ Auth::user()->visiteur_id }}" readonly>
                             <input type="month" name="mois" required>
-                            <input type="text" name="tag" value="REP" readonly>
+                            <input type="text" name="tag" value="4" readonly>
                             <input type="text" name="amount" placeholder="nombre de repas" required>
                             <input type="submit" class="myBtn" name="sub" value="Valider la note de frais">
                         </form>
@@ -51,7 +51,7 @@
                             <h2>Renseignement Fiche des Frais de kilométrage</h2>
                             <input type="text" name="visiteur" value="{{ Auth::user()->visiteur_id }}" readonly>
                             <input type="month" name="mois" required>
-                            <input type="text" name="tag" value="KM" readonly>
+                            <input type="text" name="tag" value="2" readonly>
                             <input type="text" name="amount" placeholder="nombre de Km" required>
                             <input type="submit" class="myBtn" name="sub" value="Valider la note de frais">
                         </form>

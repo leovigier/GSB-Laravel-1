@@ -15,7 +15,7 @@ class CreateFicheFraisTable extends Migration
     public function up()
     {
         Schema::create('fiche_frais', function (Blueprint $table) {
-            $table->char("visiteur_id");
+            $table->unsignedBigInteger("visiteur_id");
             $table->string('mois');
             $table->integer('nbJustificatifs');
             $table->decimal('montantValide');
@@ -23,6 +23,7 @@ class CreateFicheFraisTable extends Migration
             $table->char('id_Etat');
             $table->foreign('visiteur_id')->references('id')->on('visiteurs');
             $table->foreign('id_Etat')->references('id')->on('etats');
+            $table->timestamps();
         });
 
         DB::unprepared("ALTER TABLE `fiche_frais` ADD PRIMARY KEY (`visiteur_id`,`mois`)");

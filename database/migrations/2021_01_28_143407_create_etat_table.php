@@ -14,8 +14,9 @@ class CreateEtatTable extends Migration
     public function up()
     {
         Schema::create('etats', function (Blueprint $table) {
-            $table->char("id")->primary();
+            $table->bigIncrements("id");
             $table->string("libelle");
+            $table->timestamps();
         });
     }
 

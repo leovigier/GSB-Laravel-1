@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LigneFraisForfaits;
+use App\Models\LigneFraisHorsForfait;
 use Barryvdh\DomPDF\Facade as PDF;
 use FontLib\Table\Type\post;
 use Illuminate\Http\Request;
@@ -25,47 +27,70 @@ class ExpenseController extends Controller
     public function sendDataToDataBase(Request $request){
         //insertion de la ligne de frais "specifique" dans la bdd
         //forfait
-        DB::table('ligne_frais_forfaits')
+
+        $ajout = new LigneFraisForfaits();
+        $ajout->visiteur_id = $request->visiteur;
+        $ajout->mois = $request->mois;
+        $ajout->FraisForfait_id = $request->tag;
+        $ajout->quantite = $request->amount;
+        $ajout->save();
+
+        /*DB::table('ligne_frais_forfaits')
             ->insert([
                 'visiteur_id' => $request->visiteur,
                 'mois' => $request->mois,
                 'FraisForfait_id' => $request->tag,
                 'quantite' => $request->amount,
-            ]);
+            ]);*/
         return view('vueVerifAjoutFicheFrais');
     }
 
     //hors forfait
     public function sendDataToDataBaseBis(Request $request){
-        DB::table('ligne_frais_hors_forfaits')
+
+        $ajout = new LigneFraisHorsForfait();
+        $ajout->visiteur_id = $request->visiteur;
+        $ajout->mois = $request->mois;
+        $ajout->libelle = $request->libelle;
+        $ajout->date = $request->date;
+        $ajout->montant = $request->montant;
+        $ajout->save();
+
+        /*DB::table('ligne_frais_hors_forfaits')
             ->insert([
                 'visiteur_id' => $request->visiteur,
                 'mois'=> $request->mois,
                 'libelle'=> $request->libelle,
                 'date'=> $request->date,
                 'montant'=> $request->montant,
-            ]);
+            ]);*/
         return view('vueVerifAjoutFicheFrais');
     }
 
     //recupération des listes du visiteur connecté
     //forfait
     public function getAllExpenseOfCurrentUser(){
-        $User = Auth::user()->visiteur_id;
-        $Expenses = DB::table('ligne_frais_forfaits')
+        $user = Auth::user()->visiteur_id;
+
+        $Expenses = LigneFraisForfaits::where('visiteur_id', $user)->get();
+
+        /*$Expenses = DB::table('ligne_frais_forfaits')
             ->select('mois', 'FraisForfait_id', 'quantite')
             ->where('visiteur_id', $User)
-            ->get();
+            ->get();*/
         return view('vueListeFicheFrais',compact('Expenses'));
     }
 
     //hors forfait
     public function getAllExpenseOfCurrentUserBis(){
-        $User = Auth::user()->visiteur_id;
-        $ExpensesBis = DB::table('ligne_frais_hors_forfaits')
+        $user = Auth::user()->visiteur_id;
+
+        $ExpensesBis = LigneFraisHorsForfait::where('visiteur_id', $user)->get();
+
+        /*$ExpensesBis = DB::table('ligne_frais_hors_forfaits')
             ->select('mois', 'libelle', 'date', 'montant')
             ->where('visiteur_id', $User)
-            ->get();
+            ->get();*/
         return view('vueListeFicheFraisHF',compact('ExpensesBis'));
     }
 
@@ -73,12 +98,15 @@ class ExpenseController extends Controller
     //forfait
     public function modifyExpenseOfCurrentUser(Request $request){
         $mois = $request->input('moisExpense');
-        $modifyExpenses = DB::table('ligne_frais_forfaits')
+
+        $modifyExpenses = LigneFraisForfaits::where('mois', $mois)->get();
+
+        /*$modifyExpenses = DB::table('ligne_frais_forfaits')
             ->select('mois', 'FraisForfait_id', 'quantite')
             ->where([
                 ['mois',$mois],
             ])
-            ->get();
+            ->get();*/
         return view('vueModifFicheFrais',compact('modifyExpenses'));
     }
 
@@ -86,13 +114,16 @@ class ExpenseController extends Controller
     public function modifyExpenseOfCurrentUserHF(Request $request){
         $mois = $request->input('moisExpense');
         $date = $request->input('dateExpense');
-        $modifyExpenseBis = DB::table('ligne_frais_hors_forfaits')
+
+        $modifyExpenseBis = LigneFraisHorsForfait::where([['mois', $mois], ['date', $date]])->get();
+
+        /*$modifyExpenseBis = DB::table('ligne_frais_hors_forfaits')
             ->select('mois', 'libelle', 'date', 'montant')
             ->where([
                 ['mois', $mois],
                 ['date', $date],
             ])
-            ->get();
+            ->get();*/
         return view('vueModifFicheFraisHF',compact('modifyExpenseBis'));
     }
 
@@ -102,7 +133,10 @@ class ExpenseController extends Controller
         $mois = $request->input('moisModif');
         $type = $request->input('typeModif');
         $newqte = $request->input('qteModif');
-        DB::table('ligne_frais_forfaits')
+
+        LigneFraisForfaits::where([['mois', $mois], ['FraisForfait_id'], $type])->update(['quantite' => $newqte]);
+
+        /*DB::table('ligne_frais_forfaits')
             ->where([
                 ['mois', $mois],
                 ['FraisForfait_id', $type]
@@ -110,7 +144,7 @@ class ExpenseController extends Controller
             ->update(
                 [
                     'quantite' => $newqte
-                ]);
+                ]);*/
         return view('vueVerifModifFicheFrais');
     }
 
@@ -119,7 +153,10 @@ class ExpenseController extends Controller
         $mois = $request->input('moisModif');
         $nvxMontant = $request->input('montantmodif');
         $date = $request->input('dateModif');
-        DB::table('ligne_frais_hors_forfaits')
+
+        LigneFraisHorsForfait::where([['mois', $mois], ['date', $date]])->update(['montant'=> $nvxMontant]);
+
+        /*DB::table('ligne_frais_hors_forfaits')
             ->where([
                 ['mois', $mois],
                 ['date', $date]
@@ -127,7 +164,7 @@ class ExpenseController extends Controller
             ->update(
                 [
                     'montant' => $nvxMontant,
-                ]);
+                ]);*/
         return view('vueVerifModifFicheFrais');
     }
 
@@ -140,23 +177,21 @@ class ExpenseController extends Controller
 
 
     public function downloadPDF(Request $request){
-        $User = Auth::user()->visiteur_id;
+        $user = Auth::user()->visiteur_id;
         $mois = $request->input('moisFF');
-        $Expenses = DB::table('ligne_frais_forfaits')
+
+        $Expenses = LigneFraisForfaits::where([['visiteur_id', $user], ['mois', $mois]])->get();
+
+        /*$Expenses = DB::table('ligne_frais_forfaits')
             ->select('mois', 'FraisForfait_id', 'quantite')
             ->where([
                 ['visiteur_id', $User],
                 ['mois', $mois],
             ])
-            ->get();
+            ->get();*/
 
-        $mutipl = DB::table('frais_forfaits')
-            ->select('montant')
-            ->where([
-                
-            ]);
         $pdf = PDF::loadView("ficheFrais", compact('Expenses'));
-        return $pdf->download("fiche_de_frais-". $mois ."pdf");
+        return $pdf->download("fiche_de_frais-". $mois .".pdf");
     }
 
 }

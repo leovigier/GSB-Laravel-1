@@ -18,8 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->char("visiteur_id");
+            $table->unsignedBigInteger("visiteur_id");
             $table->foreign('visiteur_id')->references('id')->on('visiteurs');
+            $table->timestamps();
         });
     }
 

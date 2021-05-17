@@ -15,12 +15,13 @@ class CreateLigneFraisForfaitTable extends Migration
     public function up()
     {
         Schema::create('ligne_frais_forfaits', function (Blueprint $table) {
-            $table->char('visiteur_id');
+            $table->unsignedBigInteger('visiteur_id');
             $table->string('mois');
-            $table->char('FraisForfait_id');
+            $table->unsignedBigInteger('FraisForfait_id');
             $table->integer('quantite')->default(null);
             $table->foreign('visiteur_id')->references('id')->on('visiteurs');
             $table->foreign('FraisForfait_id')->references('id')->on('frais_forfaits');
+            $table->timestamps();
         });
 
         DB::unprepared("ALTER TABLE `ligne_frais_forfaits` ADD PRIMARY KEY (`visiteur_id`,`mois`,`FraisForfait_id`)");

@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class FicheFrais extends Model
 {
 
+    protected $table = 'fiche_frais';
+
     protected $fillable=
         [
             'visiteur_id',
